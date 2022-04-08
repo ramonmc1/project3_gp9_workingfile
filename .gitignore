@@ -1,5 +1,7 @@
 # Byte-compiled / optimized / DLL files
-config.py
+# config.py
+api_key
+weath_key
 
 __pycache__/
 *.py[cod]
