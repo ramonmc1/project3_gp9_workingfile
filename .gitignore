@@ -3,7 +3,11 @@
 ```python
 config.py
 `````
+#Pandas notebook
+camps.ipynb
+
 __pycache__/
+
 *.py[cod]
 *$py.class
 
