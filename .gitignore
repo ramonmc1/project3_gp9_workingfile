@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-congig.py
+config.py
 
 __pycache__/
 *.py[cod]
