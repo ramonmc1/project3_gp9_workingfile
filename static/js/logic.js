@@ -1,13 +1,13 @@
 function campMap(){
 
 const url = "/api/camps";
-
-
+ 
 d3.json(url).then(function(data) {
        
   console.log(data[0].Name.length);
 for (var i = 0; i < data[0].Name.length; i++) {
-     L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<h1>" + data[0].Name[i] + "</h1>").addTo(myMap);
+     L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>"+ data[0].City[i]+
+     "<br>"+ "<a href="+data[0].URL[i]+"><b>Website</b></a>").addTo(myMap);
 }
   
   });

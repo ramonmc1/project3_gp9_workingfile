@@ -37,12 +37,18 @@ def pals():
     Name = [result for result in results["Name"]]
     lat = [result for result in results["Latitude"]]
     lon = [result for result in results["Longitude"]]
+    URL = [result for result in results["URL"]]
+    City = [result for result in results["City"]]
+    Desc = [result for result in results["Description"]]
 
     camp_data = [{
 
         "lat": lat,
         "lon": lon,
         "Name": Name,
+        "URL": URL,
+        "City": City,
+        "Description": Desc,
         "marker": {
             "size": 50,
             "line": {
