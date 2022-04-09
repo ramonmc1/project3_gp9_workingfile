@@ -40,6 +40,7 @@ def page2(code):
     Zipcodei = []
     Lati = []
     Loni=[]
+    PCodei = []
     index=0
     searchid = code
     for index in range(len(destination_data2["PCode"])):
@@ -47,38 +48,79 @@ def page2(code):
             print("Victory..partial...time for workout")
             print(index)
             Namei.append(destination_data2["Name"][index])
-            print(Namei)
-    #         Desci.append(parkid["Desc"])
-    #         URLi.append(parkid["URL"])
-    #         Zipcodei.append(parkid["ZipCode"])
-    #         Lati.append(parkid["Latitude"])
-    #         Loni.append(parkid["Longitude"])
-            # Namei.append(parkid["PCode"])
-            # Desci.append(parkid["Desc"])
-            # URLi.append(parkid["URL"])
-            # Zipcodei.append(parkid["ZipCode"])
-            # Lati.append(parkid["Latitude"])
-            # Loni.append(parkid["Longitude"])
+            PCodei.append(destination_data2["PCode"][index])
+            Desci.append(destination_data2["Description"][index])
+            URLi.append(destination_data2["URL"][index])
+            Zipcodei.append(destination_data2["ZipCode"][index])
+            Lati.append(destination_data2["Latitude"][index])
+            Loni.append(destination_data2["Longitude"][index])
     
     camp_datai = [{
-    #     "lat": Lati,
-    #     "lon": Loni,
-        "Name": Namei[0]
-    #     "PCode": code,
-    #     "ZipCode":Zipcodei,
-    #     "URL": URLi,
-    #     "Description": Desci,
-    #     ""
-    #     "marker": {
-    #         "size": 50,
-    #         "line": {
-    #             "color": "rgb(8,8,8)",
-    #             "width": 1
-    #         },
-    #     }
+         "lat": Lati[0],
+         "lon": Loni[0],
+        "Name": Namei[0],
+         "PCode": PCodei[0],
+         "ZipCode":Zipcodei[0],
+         "URL": URLi[0],
+         "Description": Desci[0],
+         "marker": {
+             "size": 50,
+             "line": {
+                 "color": "rgb(8,8,8)",
+                 "width": 1
+             },
+         }
     }]
     print(camp_datai)
     return render_template("index2.html", campi=camp_datai)
+
+
+@app.route("/campdata/api2/<code>")
+def page2(code):
+    destination_data2 = mongo.db.parks_small.find_one()
+    Namei = []
+    Desci = []
+    URLi = []
+    Zipcodei = []
+    Lati = []
+    Loni=[]
+    PCodei = []
+    index=0
+    searchid = code
+    for index in range(len(destination_data2["PCode"])):
+        if destination_data2["PCode"][index] ==searchid:
+            print("Victory..partial...time for workout")
+            print(index)
+            Namei.append(destination_data2["Name"][index])
+            PCodei.append(destination_data2["PCode"][index])
+            Desci.append(destination_data2["Description"][index])
+            URLi.append(destination_data2["URL"][index])
+            Zipcodei.append(destination_data2["ZipCode"][index])
+            Lati.append(destination_data2["Latitude"][index])
+            Loni.append(destination_data2["Longitude"][index])
+    
+    camp_datax = [{
+         "lat": Lati[0],
+         "lon": Loni[0],
+        "Name": Namei[0],
+         "PCode": PCodei[0],
+         "ZipCode":Zipcodei[0],
+         "URL": URLi[0],
+         "Description": Desci[0],
+         "marker": {
+             "size": 50,
+             "line": {
+                 "color": "rgb(8,8,8)",
+                 "width": 1
+             },
+         }
+    }]
+ 
+    return jsonify(camp_datax)
+
+
+
+
 
 @app.route("/test")
 def test():

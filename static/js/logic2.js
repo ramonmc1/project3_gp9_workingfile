@@ -1,16 +1,18 @@
-function campMapi(){
+function campMapi(campi){
 
-const url = "/test";
+var data = campi;
  
-d3.json(url).then(function(data) {
+// d3.json(url).then(function(data) {
        
-console.log(data[0].Name);
+console.log(data);
+
+
 // for (var i = 0; i < data[0].Name.length; i++) {
 //      L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>"+ data[0].City[i]+
 //      "<br>"+ "<a href=campdata/"+ data[0].PCode[i]+"><b>Get More Details</b></a>").addTo(myMap);
 // }
   
- });
+//  });
 
 var myMap = L.map("map", {
   center: [40, -98],
