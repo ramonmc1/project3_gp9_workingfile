@@ -22,7 +22,9 @@ def scrape_info():
     Lat = []
     Long = []
     City = []
-
+    zipcode = []
+    parkCode = []
+    
     
     for camp in datacamp["data"]:
         Name.append(camp["fullName"])
@@ -31,16 +33,20 @@ def scrape_info():
         Lat.append(camp["latitude"])
         Long.append(camp["longitude"])
         City.append(camp["addresses"][0]["city"])
+        zipcode.append(camp["addresses"][0]["postalCode"])
+        parkCode.append(camp["parkCode"])
     # Loop through the list of cities and perform a request for data on each
 
 
     camp_dict = {
+    "PCode": parkCode,
     "Name": Name,
     "Latitude": Lat,
     "Longitude":Long,
     "URL": URL,
     "Description":Desc,
-    "City":City
+    "City":City,
+    "ZipCode": zipcode
     }
     
    

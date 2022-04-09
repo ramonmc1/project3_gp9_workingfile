@@ -7,7 +7,7 @@ d3.json(url).then(function(data) {
   console.log(data[0].Name.length);
 for (var i = 0; i < data[0].Name.length; i++) {
      L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>"+ data[0].City[i]+
-     "<br>"+ "<a href="+data[0].URL[i]+"><b>Website</b></a>").addTo(myMap);
+     "<br>"+ "<a href=campdata/"+ data[0].PCode[i]+"><b>Get More Details</b></a>").addTo(myMap);
 }
   
   });
