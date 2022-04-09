@@ -20,7 +20,7 @@
     crossorigin=""></script>
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 
@@ -31,7 +31,7 @@
     <nav class="navbar">
       <ul>
         <li>
-          <a href="http://127.0.0.1:5000/">Home</a>
+          <a href="#">Home</a>
         </li>
         <li>
           <a href="#">About</a>
@@ -48,23 +48,18 @@
       <div class="clearfix"></div>
     </nav>
     <header class="header">
-
-      <h1>{{data.Name}}</h1>
+      <h1>US Camp Grounds</h1>
     </header>
 
     <div class="container">
       <main>
-
-        <ul>
-          <li data-info1="lat">{{data.lat}}</li>
-          <li data-info2="lon">{{data.lon}}</li>
-        </ul>
-
-
-
-        </ul>
         <section class="posts">
           <article class="post">
+            <h3>National Park Service Information</h3>
+            <p>"National parks are the best idea we ever had. Absolutely American, absolutely democratic, they reflect
+              us at our best rather than our worst." You'll find photos and essential information about NPS sites
+              including visitor centers, campgrounds, events, news, alerts, and more, as well as detailed articles about
+              NPS natural and cultural features and important people and places.
             </p>
           </article>
         </section>
@@ -72,7 +67,7 @@
 
 
       <div class="column left">
-        .
+.
       </div>
 
       <div class="column middle">
@@ -83,8 +78,8 @@
 
       </div>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/logic2.js')}}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/logicapi.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/logic.js')}}"></script>
+
 
 </body>
 

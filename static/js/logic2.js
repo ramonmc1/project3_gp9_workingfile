@@ -1,10 +1,10 @@
-function campMapi(campi){
+function campMapi(){
 
-var data = campi;
+// var data = campi;
  
-// d3.json(url).then(function(data) {
+// // d3.json(url).then(function(data) {
        
-console.log(data);
+// console.log(data);
 
 
 // for (var i = 0; i < data[0].Name.length; i++) {
@@ -14,16 +14,16 @@ console.log(data);
   
 //  });
 
-var myMap = L.map("map", {
-  center: [40, -98],
-  zoom: 12
-});
+// var myMap = L.map("map", {
+//   center: [40, -98],
+//   zoom: 12
+// });
 
 
 // the tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(myMap);
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+// }).addTo(myMap);
 
 };
 
