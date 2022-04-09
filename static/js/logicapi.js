@@ -1,36 +1,12 @@
 
-// function getinfo (data) {
-var latlong = [48.7, -99];
-// let info = data.Name
-// var element = $('[data-size = "link"]'),
-//     size = element.data("size");
-
-// function getData (data){
-
-// data.forEach(element => {
-//   let li = document.createElement ('li')
-//     li.innerHTML = `${element.nickname} (${element.species})
-//   <button class="release" data-pokemon-id+"${element.id}">Release</button>
-//   `
-//   let trainerDiv = document.querySelector(`[data-id="${element.trainer_id}"]`)
-//   trainerDiv.append(li)
-
-//   })
-// }
 
 let findLat = document.querySelector(`[data-info1]`);
 let findLon = document.querySelector(`[data-info2]`);
 lat = findLat.innerText;
 lon = findLon.innerText;
 
-// console.log(findInfo);
-console.log(lon)
-// let findOther = document.querySelector(`data.Name`);
-
-// console.log(findOther);
 
 var latlong = [lat, lon];
-
 
 
 function campMapx(){
