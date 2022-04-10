@@ -1,34 +1,28 @@
 
+//Using JQuery to get the lat/long from the html page (attributes) to establish the map position
+// let zipq = document.querySelector(`[data-info1]`);
 
-let findLat = document.querySelector(`[data-info1]`);
-let findLon = document.querySelector(`[data-info2]`);
-lat = findLat.innerText;
-lon = findLon.innerText;
+let Latq = document.querySelector(`[data-infolat]`);
+let Lonq= document.querySelector(`[data-infolon]`);
+
+let lat = Latq.dataset.infolat;
+let lon = Lonq.dataset.infolon;
 
 
 var latlong = [lat, lon];
 
-
+//getting the data from the flask server api (@app.route("/campdata/api2"))
 function campMapx(){
-
 const url = 'http://127.0.0.1:5000/campdata/api2';
- 
-console.log(url);
 
-d3.json(url).then(function(data) {
-     
-
-L.marker([data[0].lat, data[0].lon]).bindPopup("<b>Name: </b>" + data[0].Name + "<br><b>City: </b>"+ data[0].City+
+//creating a marker with link to external website
+d3.json(url).then(function(data) {  
+L.marker([data[0].lat, data[0].lon]).bindPopup("<b>Name: </b>" + data[0].Name + 
      "<br>"+ "<a href="+data[0].URL+"><b>Webpage</b></a>").addTo(myMap);
-  let newlatlon = [parseFloat(data[0].lat),parseFloat(data[0].lon)]
-    console.log(newlatlon)
-//  this.map.setView(newlatlon);
 });
 
-
-console.log(latlong)
-
-let myMap = L.map("map", {
+//This is updated based on the jQuery latlon
+let myMap = L.map("map2", {
   center: latlong,
   zoom: 7
 });
@@ -41,5 +35,3 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 };
 
 campMapx();
-// }
-// getinfo();

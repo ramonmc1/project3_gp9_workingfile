@@ -6,6 +6,22 @@ body {
   background-size: cover; 
 }
 
+.borderexample {
+  border-style:solid;
+  border-color:#287EC7;
+  background: ghostwhite; 
+  font-size: 15px; 
+  padding: 10px; 
+  border: 1px solid lightgray; 
+  margin: 10px;
+ }
+
+.container-map {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
 .dropdown {
     float: left;
     overflow: hidden;
@@ -51,20 +67,25 @@ body {
 /* Set map, body, and html to 100% of the screen size. */
 #map { width: 800px; height: 600px; }
 
-/* #map,
-body,
-html {
-  height: 100%;
-} */
-
+#map2 { 
+  width: 500px; 
+  height: 350px; 
+}
 
 
 h1 {
   font-size: 60px;
 }
 
+h2 {
+  font-size: 50px;
+}
 h3 {
   font-size: 30px;
+}
+
+h4 {
+  font-size: 25px;
 }
 
 /* Giving our navbar some padding and a background color */
@@ -98,8 +119,18 @@ h3 {
 }
 
 /* Centering our h1 tag inside our header, giving it a little padding, removing its margin */
+
+
+
 .header h1 {
-  padding: 60px;
+  padding: 40px;
+  margin: 0;
+  color: rgb(74, 44, 247);
+  text-align: center;
+}
+
+.header h2 {
+  padding: 40px;
   margin: 0;
   color: #000;
   text-align: center;
@@ -121,11 +152,11 @@ h3 {
 }
 
 .left, .right {
-  width: 20%;
+  width: 25%;
 }
 
 .middle {
-  width: 60%;
+  width: 50%;
 }
 
 

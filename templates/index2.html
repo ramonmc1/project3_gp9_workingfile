@@ -34,57 +34,57 @@
           <a href="http://127.0.0.1:5000/">Home</a>
         </li>
         <li>
-          <a href="#">About</a>
+          <a href={{data.URL}}>Website</a>
         </li>
-        <li>
-          <a href="/upload">Load Data</a>
-        </li>
+
       </ul>
       <select id="nav-select">
         <option value="home">Home</option>
         <option value="about">About</option>
-        <option value="portfolio">Portfolio</option>
       </select>
       <div class="clearfix"></div>
     </nav>
     <header class="header">
-
-      <h1>{{data.Name}}</h1>
+      <h2>{{data.Name}}</h2>
+      <h3></h3>
     </header>
 
-    <div class="container">
-      <main>
 
-        <ul>
-          <li data-info1="lat">{{data.lat}}</li>
-          <li data-info2="lon">{{data.lon}}</li>
-        </ul>
-
-
-
-        </ul>
-        <section class="posts">
-          <article class="post">
-            </p>
-          </article>
-        </section>
-      </main>
-
-
-      <div class="column left">
-        .
-      </div>
-
-      <div class="column middle">
-        <div id="map"></div>
-      </div>
-
-      <div class="column right">
-
+    <div class="column left">
+      <div class="borderexample">
+        <h4><b>Weather Conditions:</b></h4>
+        <p><b>Max Temperature:</b> {{data.Max_temp}} F</p>
+        <p><b>Min Temperature:</b> {{data.Min_temp}} F</p>
+        <p><b>Humidity:</b> {{data.Humidity}} %</p>
+        <p><b>Cloudiness:</b> {{data.Cloudiness}} %</p>
+        <p><b>Wind Speed:</b> {{data.Wind_Speed}} mph</p>
       </div>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/logic2.js')}}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/logicapi.js')}}"></script>
+
+    <div class="column middle">
+<br>
+      <div class="container-map">
+         <main>
+          <section class="posts">
+            <div id="map2"></div>
+              <a data-infolat="{{data.lat}}"></a>
+              <a data-infolon="{{data.lon}}"></a>
+
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="column right">
+
+      <div class="borderexample">
+        <h4><b>Description of Campsite:</b></h4>
+        <p>{{data.Description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/logic2.js')}}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/logicapi.js')}}"></script>
 
 </body>
 

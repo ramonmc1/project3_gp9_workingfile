@@ -6,6 +6,7 @@ import html5lib
 import time
 import pymongo
 from config import api_key
+from config import weath_key
 import urllib.request, json
 
 def scrape_info():
@@ -51,5 +52,34 @@ def scrape_info():
     
    
     return camp_dict
+
+
+def weather_info(zip):
+
+    url = "http://api.openweathermap.org/data/2.5/weather?"
+    units = "imperial"
+
+    weath_url = f"{url}appid={weath_key}&units={units}&q={zip}"
+
+    response = requests.get(weath_url).json() 
+
+    weath_dict = {
+    "Max_temp":response['main']['temp_max'],
+    "Min_temp":response['main']['temp_min'],
+    "Humidity":response['main']['humidity'],
+    "Cloudiness":response['clouds']['all'],
+    "Wind_Speed":response['wind']['speed'],
+    "Date":response['dt'],
+    "City":response['name']
+    }
+    
+   
+    return weath_dict
+
+
+
+
+
+
 
 
