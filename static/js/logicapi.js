@@ -18,7 +18,7 @@ const url = 'http://127.0.0.1:5000/campdata/api2';
 //creating a marker with link to external website
 d3.json(url).then(function(data) {  
 L.marker([data[0].lat, data[0].lon]).bindPopup("<b>Name: </b>" + data[0].Name + 
-     "<br>"+ "<a href="+data[0].URL+"><b>Webpage</b></a>").addTo(myMap);
+     "<br>"+ "$"+ data[0].Cost+ "<br>"+"<a href="+data[0].URL+"><b>Webpage</b></a>").addTo(myMap);
 });
 
 //This is updated based on the jQuery latlon

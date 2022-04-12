@@ -6,21 +6,23 @@ import camp_scrape
 app = Flask(__name__)
 
 # Use PyMongo to establish Mongo connection
-mongo = PyMongo(app, uri="mongodb://localhost:27017/camp_small")
+mongo = PyMongo(app, uri="mongodb://localhost:27017/camp_project")
 
+# datacamp_dict = camp_scrape.scrape_info()
+# mongo.db.parks_nps.update_one({}, {"$set": datacamp_dict}, upsert=True)
 
 # Route to render index.html template using data from Mongo
 
 @app.route("/")
 def home():
-    destination_data = mongo.db.parks_small.find_one()
+    destination_data = mongo.db.parks_nps.find_one()
       
     return render_template("index.html", camp=destination_data)
     
 #api to get the camp data and weather condition for a single campsite
 @app.route("/campdata/<code>")
 def page2(code):
-    destination_data2 = mongo.db.parks_small.find_one()
+    destination_data2 = mongo.db.parks_nps.find_one()
     Namei = []
     Desci = []
     URLi = []
@@ -28,6 +30,12 @@ def page2(code):
     Lati = []
     Loni=[]
     PCodei = []
+    Imagesi = []
+    Images_titlei = []
+    Images_capi = []
+    Weather_infoi = []
+    Costi = []
+    Cost_symboli = []
     index=0
     searchid = code
     for index in range(len(destination_data2["PCode"])):
@@ -39,18 +47,30 @@ def page2(code):
             Zipcodei.append(destination_data2["ZipCode"][index])
             Lati.append(destination_data2["Latitude"][index])
             Loni.append(destination_data2["Longitude"][index])
-    
+            Imagesi.append(destination_data2["Images"][index])
+            Images_titlei.append(destination_data2["Image_title"][index])
+            Images_capi.append(destination_data2["Caption"][index])
+            Weather_infoi.append(destination_data2["Weather_info"][index])
+            Costi.append(destination_data2["Cost"][index])
+            Cost_symboli.append(destination_data2["Cost_range"][index])
+
     zip = Zipcodei[0]
     weather_dict = camp_scrape.weather_info(zip)
-    mongo.db.weather.update_one({}, {"$set": weather_dict}, upsert=True)
+    mongo.db.weather_nps.update_one({}, {"$set": weather_dict}, upsert=True)
     camp_datai = {
          "lat": Lati[0],
          "lon": Loni[0],
-        "Name": Namei[0],
+         "Name": Namei[0],
          "PCode": PCodei[0],
          "ZipCode":Zipcodei[0],
          "URL": URLi[0],
          "Description": Desci[0],
+         "Image":Imagesi[0],
+         "Image_title": Images_titlei[0],
+         "Caption":Images_capi[0],
+         "Weather_info": Weather_infoi[0],
+         "Cost":Costi[0],
+         "Cost_range":Cost_symboli[0],
          "Max_temp": weather_dict["Max_temp"],
          "Min_temp": weather_dict["Min_temp"],
          "Humidity": weather_dict["Humidity"],
@@ -65,9 +85,8 @@ def page2(code):
                  "width": 1
              },
          }
-    }
-    
-    mongo.db.parks_individual.update_one({}, {"$set": camp_datai}, upsert=True)
+    }   
+    mongo.db.parks_nps_individual.update_one({}, {"$set": camp_datai}, upsert=True)
   
     return render_template("index2.html", data=camp_datai)
    
@@ -75,24 +94,16 @@ def page2(code):
 @app.route("/campdata/api2")
 def campi():    
     
-    results = mongo.db.parks_individual.find_one()
-
-    Name = results["Name"]
-    lat = results["lat"]
-    lon = results["lon"]
-    URL = results["URL"]
-    ZipCode = results["ZipCode"]
-    PCode = results["PCode"]
-    Desc = results["Description"]
-    
+    results = mongo.db.parks_nps_individual.find_one()
     camp_dataii = [{
-        "lat": lat,
-        "lon": lon,
-        "Name": Name,
-        "PCode": PCode,
-        "ZipCode":ZipCode,
-        "URL": URL,
-        "Description": Desc, 
+        "lat": results["lat"],
+        "lon": results["lon"],
+        "Name": results["Name"],
+        "PCode": results["PCode"],
+        "ZipCode":results["ZipCode"],
+        "URL": results["URL"],
+        "Description": results["Description"], 
+        "Cost": results["Cost"],
         "marker": {
             "size": 50,
             "line": {
@@ -106,9 +117,9 @@ def campi():
 
 
 @app.route("/api/camps")
-def pals():
+def camp_data():
     
-    results = mongo.db.parks_small.find_one()
+    results = mongo.db.parks_nps.find_one()
     Name = [result for result in results["Name"]]
     lat = [result for result in results["Latitude"]]
     lon = [result for result in results["Longitude"]]
@@ -117,7 +128,9 @@ def pals():
     ZipCode = [result for result in results["ZipCode"]]
     PCode = [result for result in results["PCode"]]
     Desc = [result for result in results["Description"]]
-    
+    Cost = [result for result in results["Cost"]]
+    Cost_range = [result for result in results["Cost_range"]]
+
     camp_data = [{
         "lat": lat,
         "lon": lon,
@@ -127,6 +140,8 @@ def pals():
         "URL": URL,
         "City": City,
         "Description": Desc,
+        "Cost": Cost,
+        "Cost_range":Cost_range,
         "marker": {
             "size": 50,
             "line": {
@@ -146,7 +161,7 @@ def scrape():
     datacamp_dict = camp_scrape.scrape_info()
 
     # Insert the record
-    mongo.db.parks_small.update_one({}, {"$set": datacamp_dict}, upsert=True)
+    mongo.db.parks_nps.update_one({}, {"$set": datacamp_dict}, upsert=True)
 
     # Redirect back to home page
     return redirect("/")

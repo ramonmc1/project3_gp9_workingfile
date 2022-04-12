@@ -52,34 +52,47 @@
 
     <div class="column left">
       <div class="borderexample">
-        <h4><b>Weather Conditions:</b></h4>
-        <p><b>Max Temperature:</b> {{data.Max_temp}} F</p>
-        <p><b>Min Temperature:</b> {{data.Min_temp}} F</p>
-        <p><b>Humidity:</b> {{data.Humidity}} %</p>
-        <p><b>Cloudiness:</b> {{data.Cloudiness}} %</p>
-        <p><b>Wind Speed:</b> {{data.Wind_Speed}} mph</p>
+        <h4><b>Site Information:</b></h4>
+
+        <img width ="300px", src={{data.Image}} alt="park picture">
+        <p><b>{{data.Image_title}}</b></p>
+         <p>{{data.Caption}}</p>
+    
       </div>
+  
     </div>
 
     <div class="column middle">
 <br>
       <div class="container-map">
          <main>
-          <section class="posts">
+          <section class="post">
             <div id="map2"></div>
               <a data-infolat="{{data.lat}}"></a>
               <a data-infolon="{{data.lon}}"></a>
-
           </section>
+          <div class="borderexample">
+            <h4><b>Description of Campsite:</b></h4>
+            <p>{{data.Description}}</p>
         </main>
+
+        </div>
       </div>
+
+
     </div>
     <div class="column right">
-
       <div class="borderexample">
-        <h4><b>Description of Campsite:</b></h4>
-        <p>{{data.Description}}</p>
+        <h4><b>Weather Conditions:</b></h4>
+        <p><b>Max Temperature:</b> {{data.Max_temp}} F</p>
+        <p><b>Min Temperature:</b> {{data.Min_temp}} F</p>
+        <p><b>Humidity:</b> {{data.Humidity}} %</p>
+        <p><b>Cloudiness:</b> {{data.Cloudiness}} %</p>
+        <p><b>Wind Speed:</b> {{data.Wind_Speed}} mph</p>
+        <p>{{data.Weather_info}}</p>
       </div>
+
+
     </div>
   </div>
 
