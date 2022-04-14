@@ -4,35 +4,66 @@ function campMap() {
 
   d3.json(url).then(function (data) {
 
+   
+    var greenIcon = new L.Icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+    
+    var yellowIcon = new L.Icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+   
+    var orangeIcon = new L.Icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+
+    
     var campMarkers = [];
     var lowCost = [];
     var medCost = [];
     var highCost = [];
 
     for (var i = 0; i < data[0].Name.length; i++) {
-      // var x = data[0].parkCode   
+     
 
-      // if (x ==glac) {
+   
       campMarkers.push(L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>" + data[0].City[i] +
         "<br>" + "<a href=campdata/" + data[0].PCode[i] + "><b>Get More Details</b></a>"));
-    console.log(data[0].PCode[i])
-      }
+        }
 
     for (var i = 0; i < data[0].Name.length; i++) {
       var x = data[0].Cost_range[i];
-      // console.log(x);
+ 
 
       if (x == '$') {
-        lowCost.push(L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>" + data[0].City[i] +
+        lowCost.push(L.marker([data[0].lat[i], data[0].lon[i]],{
+          icon: greenIcon}).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>" + data[0].City[i] +
           "<br>" + "<a href=campdata/" + data[0].PCode[i] + "><b>Get More Details</b></a>"));
       }
       else if (x == '$$') {
-        medCost.push(L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>" + data[0].City[i] +
+        medCost.push(L.marker([data[0].lat[i], data[0].lon[i]],{
+          icon: yellowIcon}).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>" + data[0].City[i] +
           "<br>" + "<a href=campdata/" + data[0].PCode[i] + "><b>Get More Details</b></a>"));
       }
 
       else if (x =='$$$') {
-        highCost.push(L.marker([data[0].lat[i], data[0].lon[i]]).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>" + data[0].City[i] +
+        highCost.push(L.marker([data[0].lat[i], data[0].lon[i]],{
+          icon: orangeIcon}).bindPopup("<b>Name: </b>" + data[0].Name[i] + "<br><b>City: </b>" + data[0].City[i] +
           "<br>" + "<a href=campdata/" + data[0].PCode[i] + "><b>Get More Details</b></a>"));
       }
 
@@ -60,9 +91,9 @@ function campMap() {
 
       var overlayMaps = {
         "All Camps": campLayer,
-        "$": lowCampLayer,
-        "$$": medCampLayer,
-        "$$$": highCampLayer
+        "$ < $5": lowCampLayer,
+        "$$ $5-$40": medCampLayer,
+        "$$$ > $40": highCampLayer
       };
 
 

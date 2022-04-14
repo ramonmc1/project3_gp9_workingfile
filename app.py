@@ -8,8 +8,8 @@ app = Flask(__name__)
 # Use PyMongo to establish Mongo connection
 mongo = PyMongo(app, uri="mongodb://localhost:27017/camp_project")
 
-# datacamp_dict = camp_scrape.scrape_info()
-# mongo.db.parks_nps.update_one({}, {"$set": datacamp_dict}, upsert=True)
+datacamp_dict = camp_scrape.scrape_info()
+mongo.db.parks_nps.update_one({}, {"$set": datacamp_dict}, upsert=True)
 
 # Route to render index.html template using data from Mongo
 
@@ -36,6 +36,9 @@ def page2(code):
     Weather_infoi = []
     Costi = []
     Cost_symboli = []
+    OperHoursi = []
+    directionsi = []
+
     index=0
     searchid = code
     for index in range(len(destination_data2["PCode"])):
@@ -53,7 +56,8 @@ def page2(code):
             Weather_infoi.append(destination_data2["Weather_info"][index])
             Costi.append(destination_data2["Cost"][index])
             Cost_symboli.append(destination_data2["Cost_range"][index])
-
+            OperHoursi.append(destination_data2["Hours"][index])
+            directionsi.append(destination_data2["Directions"][index])
     zip = Zipcodei[0]
     weather_dict = camp_scrape.weather_info(zip)
     mongo.db.weather_nps.update_one({}, {"$set": weather_dict}, upsert=True)
@@ -71,6 +75,8 @@ def page2(code):
          "Weather_info": Weather_infoi[0],
          "Cost":Costi[0],
          "Cost_range":Cost_symboli[0],
+         "Hours":OperHoursi[0],
+         "Directions":directionsi[0],
          "Max_temp": weather_dict["Max_temp"],
          "Min_temp": weather_dict["Min_temp"],
          "Humidity": weather_dict["Humidity"],
@@ -142,29 +148,29 @@ def camp_data():
         "Description": Desc,
         "Cost": Cost,
         "Cost_range":Cost_range,
-        "marker": {
-            "size": 50,
-            "line": {
-                "color": "rgb(8,8,8)",
-                "width": 1
-            },
-        }
+        # "marker": {
+        #     "size": 50,
+        #     "line": {
+        #         "color": "rgb(8,8,8)",
+        #         "width": 1
+        #     },
+        # }
     }]
 
     return jsonify(camp_data)
 
 # Route that will trigger the scrape function
-@app.route("/upload")
-def scrape():
+# @app.route("/upload")
+# def scrape():
 
-    # Run the scrape function
-    datacamp_dict = camp_scrape.scrape_info()
+#     # Run the scrape function
+#     datacamp_dict = camp_scrape.scrape_info()
 
-    # Insert the record
-    mongo.db.parks_nps.update_one({}, {"$set": datacamp_dict}, upsert=True)
+#     # Insert the record
+#     mongo.db.parks_nps.update_one({}, {"$set": datacamp_dict}, upsert=True)
 
-    # Redirect back to home page
-    return redirect("/")
+#     # Redirect back to home page
+#     return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)

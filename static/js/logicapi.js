@@ -1,6 +1,7 @@
 
 //Using JQuery to get the lat/long from the html page (attributes) to establish the map position
-// let zipq = document.querySelector(`[data-info1]`);
+// // let zipq = document.querySelector(`[data-info1]`);
+// $(window).on("resize", function () { $("#map2").height($(window).height()-40); map.invalidateSize(); }).trigger("resize");
 
 let Latq = document.querySelector(`[data-infolat]`);
 let Lonq= document.querySelector(`[data-infolon]`);

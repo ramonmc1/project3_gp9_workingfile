@@ -2,9 +2,6 @@
 import pandas as pd
 import requests
 from splinter import Browser
-import html5lib
-import time
-import pymongo
 from config import api_key
 from config import weath_key
 import urllib.request, json
@@ -31,35 +28,46 @@ def scrape_info():
     Weather_info = []
     Cost = []
     Cost_symbol = []
+    OperHours = []
+    directions = []
+    i=0
     
     for camp in datacamp["data"]:
-        Name.append(camp["fullName"])
-        URL.append(camp["url"])
-        Desc.append(camp["description"])
-        Lat.append(camp["latitude"])
-        Long.append(camp["longitude"])
-        City.append(camp["addresses"][0]["city"])
-        zipcode.append(camp["addresses"][0]["postalCode"])
-        parkCode.append(camp["parkCode"])
-        Images.append(camp["images"][0]["url"])
-        Images_title.append(camp["images"][0]["title"])
-        Images_cap.append(camp["images"][0]["caption"])
-        Weather_info.append(camp["weatherInfo"])
-
+        try:
+            i=i+1
+            Name.append(camp["fullName"])
+            URL.append(camp["url"])
+            Desc.append(camp["description"])
+            Lat.append(camp["latitude"])
+            Long.append(camp["longitude"])
+            City.append(camp["addresses"][0]["city"])
+            directions.append(camp["directionsInfo"])
+            zipcode.append(camp["addresses"][0]["postalCode"])
+            parkCode.append(camp["parkCode"])
+            Images.append(camp["images"][0]["url"])
+            Images_title.append(camp["images"][0]["title"])
+            Images_cap.append(camp["images"][0]["caption"])
+            OperHours.append(camp["operatingHours"][0]["description"])
+            Weather_info.append(camp["weatherInfo"])
+        except:
+            print (i)
     for camp in datacamp["data"]:
         try:   
-            fee = (camp ["entrancePasses"][0]["cost"])
-            Cost.append(fee)
-            if float(fee)> 65:
+            fee = (camp ["entranceFees"][0]["cost"])
+            
+            if float(fee)> 30:
+                Cost.append(fee)
                 Cost_symbol.append("$$$")
-            elif float(fee) > 25:
+            elif float(fee) >= 5:
+                Cost.append(fee)
                 Cost_symbol.append("$$")
-            elif float(fee) <= 25:
+            elif float(fee) < 5:
+                Cost.append(fee)
                 Cost_symbol.append("$")
         except:
-           Cost.append('no data')
-           Cost_symbol.append("-")  
-
+           Cost.append('0')
+           Cost_symbol.append("$")  
+  
     camp_dict = {
     "PCode": parkCode,
     "Name": Name,
@@ -74,7 +82,9 @@ def scrape_info():
     "Caption":Images_cap,
     "Weather_info":Weather_info,
     "Cost":Cost,
-    "Cost_range": Cost_symbol     
+    "Cost_range": Cost_symbol,
+    "Hours": OperHours,
+    "Directions": directions
 
     }
     
