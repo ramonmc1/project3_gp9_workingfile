@@ -88,30 +88,47 @@ def scrape_info():
 
     }
     
-   
     return camp_dict
 
 
 def weather_info(zip):
 
+    Temp = [] 
+    Humidity = []
+    Cloudiness = [] 
+    Wind_Speed = []
+    Date = []
+    City = []
+     
     url = "http://api.openweathermap.org/data/2.5/weather?"
     units = "imperial"
 
     weath_url = f"{url}appid={weath_key}&units={units}&q={zip}"
-
+    print(weath_url)
     response = requests.get(weath_url).json() 
-
-    weath_dict = {
-    "Max_temp":response['main']['temp_max'],
-    "Min_temp":response['main']['temp_min'],
-    "Humidity":response['main']['humidity'],
-    "Cloudiness":response['clouds']['all'],
-    "Wind_Speed":response['wind']['speed'],
-    "Date":response['dt'],
-    "City":response['name']
-    }
+    try:
+        Temp.append(response['main']['temp'])
+        Humidity.append(response['main']['humidity'])
+        Cloudiness.append(response['clouds']['all'])
+        Wind_Speed.append(response['wind']['speed'])
+        Date.append(response['dt'])
+        City.append(response['name'])
+    except:
+        Temp.append("-")
+        Humidity.append("-")
+        Cloudiness.append("-")
+        Wind_Speed.append("-")
+        Date.append("-")
+        City.append("-")
     
-   
+    weath_dict = { 
+        "Temp" : Temp,
+        "Humidity" : Humidity,
+        "Cloudiness" : Cloudiness,
+        "Wind_Speed" : Wind_Speed,
+        "Date" : Date,
+        "City": City
+    }
     return weath_dict
 
 

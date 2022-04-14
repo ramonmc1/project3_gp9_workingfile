@@ -57,15 +57,14 @@
           <img width="100%" height="400px" , src={{data.Image}} alt="park picture">
           <p>{{data.Caption}}</p>
           <h4><b>Current Weather Conditions:</b></h4>
-          <p><b>Max Temperature:</b> {{data.Max_temp}} F</p>
-          <p><b>Min Temperature:</b> {{data.Min_temp}} F</p>
-          <p><b>Humidity:</b> {{data.Humidity}} %</p>
-          <p><b>Cloudiness:</b> {{data.Cloudiness}} %</p>
-          <p><b>Wind Speed:</b> {{data.Wind_Speed}} mph</p>
+          <p><b>Temperature:</b> {{data.Temp[0]}} F</p>
+          <p><b>Humidity:</b> {{data.Humidity[0]}} %</p>
+          <p><b>Cloudiness:</b> {{data.Cloudiness[0]}} %</p>
+          <p><b>Wind Speed:</b> {{data.Wind_Speed[0]}} mph</p>
           <p>{{data.Weather_info}}</p>
         </div>
         <div class="col-sm-6 bg-light" id="map-holder">
-          <h6>Park Information</h6>
+          <h6 class="text-light">.</h6>
           <div id="map2">
             <a data-infolat="{{data.lat}}"></a>
             <a data-infolon="{{data.lon}}"></a>

@@ -92,8 +92,8 @@ function campMap() {
       var overlayMaps = {
         "All Camps": campLayer,
         "$ < $5": lowCampLayer,
-        "$$ $5-$40": medCampLayer,
-        "$$$ > $40": highCampLayer
+        "$$ $5-$30": medCampLayer,
+        "$$$ > $30": highCampLayer
       };
 
 

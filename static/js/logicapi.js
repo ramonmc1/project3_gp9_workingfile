@@ -25,7 +25,7 @@ L.marker([data[0].lat, data[0].lon]).bindPopup("<b>Name: </b>" + data[0].Name +
 //This is updated based on the jQuery latlon
 let myMap = L.map("map2", {
   center: latlong,
-  zoom: 7
+  zoom: 6
 });
 
 // the tile layer
