@@ -92,7 +92,6 @@ def page2(code):
          }
     }   
     mongo.db.parks_nps_individual.update_one({}, {"$set": camp_datai}, upsert=True)
-  
     return render_template("index2.html", data=camp_datai)
    
 #This api call an 'individual campsite' from the mongodb for the marker and popup information
@@ -109,6 +108,7 @@ def campi():
         "URL": results["URL"],
         "Description": results["Description"], 
         "Cost": results["Cost"],
+        "Hours": results["Hours"],
         "marker": {
             "size": 50,
             "line": {
@@ -147,29 +147,11 @@ def camp_data():
         "Description": Desc,
         "Cost": Cost,
         "Cost_range":Cost_range,
-        # "marker": {
-        #     "size": 50,
-        #     "line": {
-        #         "color": "rgb(8,8,8)",
-        #         "width": 1
-        #     },
-        # }
+   
     }]
 
     return jsonify(camp_data)
 
-# Route that will trigger the scrape function
-# @app.route("/upload")
-# def scrape():
-
-#     # Run the scrape function
-#     datacamp_dict = camp_scrape.scrape_info()
-
-#     # Insert the record
-#     mongo.db.parks_nps.update_one({}, {"$set": datacamp_dict}, upsert=True)
-
-#     # Redirect back to home page
-#     return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)

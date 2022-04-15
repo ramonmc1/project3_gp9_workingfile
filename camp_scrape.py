@@ -33,24 +33,20 @@ def scrape_info():
     i=0
     
     for camp in datacamp["data"]:
-        try:
-            i=i+1
-            Name.append(camp["fullName"])
-            URL.append(camp["url"])
-            Desc.append(camp["description"])
-            Lat.append(camp["latitude"])
-            Long.append(camp["longitude"])
-            City.append(camp["addresses"][0]["city"])
-            directions.append(camp["directionsInfo"])
-            zipcode.append(camp["addresses"][0]["postalCode"])
-            parkCode.append(camp["parkCode"])
-            Images.append(camp["images"][0]["url"])
-            Images_title.append(camp["images"][0]["title"])
-            Images_cap.append(camp["images"][0]["caption"])
-            OperHours.append(camp["operatingHours"][0]["description"])
-            Weather_info.append(camp["weatherInfo"])
-        except:
-            print (i)
+        Name.append(camp["fullName"])
+        URL.append(camp["url"])
+        Desc.append(camp["description"])
+        Lat.append(camp["latitude"])
+        Long.append(camp["longitude"])
+        City.append(camp["addresses"][0]["city"])
+        directions.append(camp["directionsInfo"])
+        zipcode.append(camp["addresses"][0]["postalCode"])
+        parkCode.append(camp["parkCode"])
+        Images.append(camp["images"][0]["url"])
+        Images_title.append(camp["images"][0]["title"])
+        Images_cap.append(camp["images"][0]["caption"])
+        Weather_info.append(camp["weatherInfo"])
+          
     for camp in datacamp["data"]:
         try:   
             fee = (camp ["entranceFees"][0]["cost"])
@@ -67,7 +63,13 @@ def scrape_info():
         except:
            Cost.append('0')
            Cost_symbol.append("$")  
-  
+    
+    for camp in datacamp["data"]:
+        try:   
+            OperHours.append(camp["operatingHours"][0]["description"])
+        except:   
+            OperHours.append("no information available")
+
     camp_dict = {
     "PCode": parkCode,
     "Name": Name,
