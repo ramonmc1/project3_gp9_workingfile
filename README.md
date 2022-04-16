@@ -1,4 +1,13 @@
-# project3_gp9_workingfile
+# project 3 - Camp Scrapers
+
+Team Members:
+  Ramon Martinez
+  Aditya Bagchi
+  Raghu Pucha
+  Kamila Ibragimova 
+  Stacey Scott
+ 
+Instrictions:
 1. Download files and keep them in the same folder.
 2. Create your owm National Park Services (NPS) api keys api_key= " " and weath_key = " " in a file name "config.py".
 4. This is where you get your key NPS [https://www.nps.gov/subjects/developer/get-started.htm]. The OpenWeather API key can be obtained here: https://openweathermap.org/api.
