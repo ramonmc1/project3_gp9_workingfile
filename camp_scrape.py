@@ -30,7 +30,6 @@ def scrape_info():
     Cost_symbol = []
     OperHours = []
     directions = []
-    i=0
     
     for camp in datacamp["data"]:
         Name.append(camp["fullName"])
@@ -106,7 +105,6 @@ def weather_info(zip):
     units = "imperial"
 
     weath_url = f"{url}appid={weath_key}&units={units}&q={zip}"
-    print(weath_url)
     response = requests.get(weath_url).json() 
     try:
         Temp.append(response['main']['temp'])

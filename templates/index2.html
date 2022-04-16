@@ -18,8 +18,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin="" />
-  <!-- Leaflet Bootstrap Style -->
-  <link href="styles/leaflet_bootstrap.css" rel="stylesheet" type="text/css" />
 
   <!-- Leaflet JavaScript code -->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -84,14 +82,9 @@
   <script src="https://code.jquery.com/jquery-3.2.0.slim.min.js"
     integrity="sha256-qLAv0kBAihcHZLI3fv3WITKeRsUX27hd6upBBa0MSow=" crossorigin="anonymous"></script>
 
-  <!-- Resize Map *Make sure this is before Leaflet -->
-  <script type="text/javascript" src="scripts/resize_map.js"></script>
-
   <!-- LEAFLET -->
   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
-  <!-- LEAFLET_BOOTSTRAP -->
-  <script type="text/javascript" src="scripts/leaflet_bootstrap.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -102,10 +95,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/logic2.js')}}"></script>
+  
+    <!-- js to load info from MongoDB through the app.py flask server -->
   <script type="text/javascript" src="{{ url_for('static', filename='js/logicapi.js')}}"></script>
-
-
 
 </body>
 

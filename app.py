@@ -39,7 +39,6 @@ def page2(code):
     OperHoursi = []
     directionsi = []
 
-    index=0
     searchid = code
     for index in range(len(destination_data2["PCode"])):
         if destination_data2["PCode"][index] ==searchid:
@@ -116,10 +115,8 @@ def campi():
                 "width": 1
             },
         }
-    }]
-    
+    }] 
     return jsonify(camp_dataii)
-
 
 @app.route("/api/camps")
 def camp_data():
