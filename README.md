@@ -1,11 +1,11 @@
 # project 3 - Camp Scrapers
 
 Team Members:
-  Ramon Martinez
-  Aditya Bagchi
-  Raghu Pucha
-  Kamila Ibragimova 
-  Stacey Scott
+1. Ramon Martinez
+2. Aditya Bagchi
+3. Raghu Pucha
+4. Kamila Ibragimova 
+5. Stacey Scott
  
 Instrictions:
 1. Download files and keep them in the same folder.
